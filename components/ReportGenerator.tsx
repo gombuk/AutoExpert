@@ -7,14 +7,56 @@ import { UploadIcon, DocumentTextIcon, SparklesIcon, CheckCircleIcon, XCircleIco
 
 const EXPERTS = ['Гомба Ю.В.', 'Дан Т.О.', 'Білаш Л.П.', 'Палчей Я.В.'];
 
+const MONTHS_UA = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
+
+const LOGO_SVG = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+\t viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve" width="80px" height="80px">
+<path d="M24.4,5.6c-0.8-1.3-2-2.4-3.4-3.2c-0.5-0.2-0.9,0.2-0.8,0.8c0.2,1.1-0.2,2.5-1.3,3.4C18,7.3,16.6,7.2,15.5,6.9
+\tC15.4,6.9,15.2,7,15.2,7.1v1.3c0.9-0.2,1.9-0.3,2.8-0.1c2.3,0.4,3.8,2.5,3.5,4.8c-0.3,2.3-2.4,3.9-4.7,3.7c-0.5,0-1-0.2-1.5-0.4v1.8
+\tc0.9,0.3,1.8,0.9,2.4,1.7c1.4,1.9,1,4.6-0.9,6c-0.5,0.3-1,0.6-1.6,0.7v2.7h-0.6v-2.7c-0.5-0.1-1-0.4-1.6-0.7
+\tc-1.9-1.4-2.3-4.1-0.9-6c0.6-0.8,1.4-1.4,2.4-1.7v-1.8c-0.5,0.2-1,0.4-1.5,0.4c-2.3,0.2-4.4-1.4-4.7-3.7c-0.3-2.3,1.3-4.4,3.5-4.8
+\tc0.9-0.2,1.9-0.1,2.8,0.1V7.1c-0.1-0.1-0.2-0.2-0.3-0.2C13.4,7.2,12,7.3,11.1,6.6c-1-0.9-1.5-2.3-1.3-3.4C9.9,2.6,9.4,2.2,9,2.4
+\tC7.6,3.3,6.4,4.4,5.6,5.6C5.3,6.1,5.9,6.6,6.4,6.3c1-0.6,2.3-0.7,3.6-0.3c0.1,0,0.2,0,0.3-0.1c0-0.1,0-0.2-0.1-0.3
+\tc-0.4-1-0.3-2.1,0.3-3c1.4,0,2.8,0.5,4,1.3c0.3,0.2,0.7,0.2,1,0c1.2-0.8,2.7-1.3,4-1.3c0.6,0.9,0.7,2,0.3,3c0,0.1-0.1,0.2-0.1,0.3
+\tc0.1,0.1,0.2,0.1,0.3,0.1c1.3-0.4,2.5-0.3,3.6,0.3C24.1,6.6,24.7,6.1,24.4,5.6z M14.4,23.1c-0.7,0.5-1.7,0.3-2.2-0.4
+\tc-0.5-0.7-0.3-1.7,0.4-2.2c0.4-0.3,0.9-0.4,1.4-0.2l0.4,0.2V23.1z M15.6,20.5l0.4-0.2c0.5-0.2,1-0.1,1.4,0.2
+\tc0.7,0.5,0.9,1.5,0.4,2.2C17.3,23.4,16.3,23.6,15.6,23.1V20.5z M15,15.7c-1.5,0-2.8-1-3.1-2.5c-0.3-1.5,0.6-2.9,2-3.4
+\tc0.4-0.1,0.7-0.2,1.1-0.2c0.4,0,0.7,0,1.1,0.2c1.4,0.5,2.3,1.9,2,3.4C17.8,14.6,16.5,15.7,15,15.7z"/>
+</svg>`;
+
+const STANDARD_HEADER_HTML = `
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; border: none; font-family: 'Times New Roman', serif;">
+    <tr style="border: none;">
+        <td style="width: 20%; vertical-align: top; text-align: center; border: none !important; padding: 0; padding-top: 10px;">
+             [ЛОГОТИП]
+        </td>
+        <td style="vertical-align: top; text-align: center; border: none !important; padding: 0;">
+            <div style="text-align: center; font-weight: bold; margin-bottom: 5px; font-size: 12pt;">
+                ЗАКАРПАТСЬКА ТОРГОВО-ПРОМИСЛОВА ПАЛАТА
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 30px; padding: 0 40px; font-size: 12pt;">
+                <span style="font-weight: bold;">ХУСТСЬКЕ ВІДДІЛЕННЯ</span>
+                <span>телефон 5-51-75</span>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <h1 style="font-size: 18pt; font-weight: bold; margin: 0;">ЕКСПЕРТНИЙ ВИСНОВОК № [НОМЕР_ВИСНОВКУ]</h1>
+                <p style="margin: 5px 0 0 0; font-size: 12pt;">від «[ДЕНЬ]» [МІСЯЦЬ] [РІК] р.</p>
+            </div>
+        </td>
+    </tr>
+</table>
+`;
+
 const ReportGenerator: React.FC = () => {
   const [templates, setTemplates] = useState<FirmTemplate[]>([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('');
   const [selectedExpert, setSelectedExpert] = useState<string>('');
   const [conclusionNumber, setConclusionNumber] = useState<string>('');
-  // Default start date to today, formatted as YYYY-MM-DD for the input[type="date"]
   const [startDate, setStartDate] = useState<string>(new Date().toISOString().split('T')[0]);
   const [endDate, setEndDate] = useState<string>('');
+  const [useStandardHeader, setUseStandardHeader] = useState<boolean>(true);
+  const [includeLogo, setIncludeLogo] = useState<boolean>(true);
 
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -38,7 +80,6 @@ const ReportGenerator: React.FC = () => {
         const file = event.target.files[i];
         const id = Date.now() + i + '';
         
-        // Basic preview for images
         let previewUrl: string | undefined = undefined;
         let base64: string | undefined = undefined;
 
@@ -59,7 +100,7 @@ const ReportGenerator: React.FC = () => {
         newFiles.push({ file, id, previewUrl, base64, mimeType: file.type });
       }
       setFiles(prev => [...prev, ...newFiles]);
-      setError(null); // clear prev errors on new upload
+      setError(null); 
     }
   };
 
@@ -98,9 +139,27 @@ const ReportGenerator: React.FC = () => {
     setResult(null);
 
     try {
+      let finalTemplateText = template.templateText;
+
+      if (useStandardHeader) {
+          const dateObj = new Date(startDate);
+          const day = dateObj.getDate().toString().padStart(2, '0');
+          const month = MONTHS_UA[dateObj.getMonth()];
+          const year = dateObj.getFullYear();
+
+          let header = STANDARD_HEADER_HTML
+              .replace('[ЛОГОТИП]', includeLogo ? LOGO_SVG : '')
+              .replace('[НОМЕР_ВИСНОВКУ]', conclusionNumber || '___')
+              .replace('[ДЕНЬ]', day)
+              .replace('[МІСЯЦЬ]', month)
+              .replace('[РІК]', year.toString());
+
+          finalTemplateText = header + finalTemplateText;
+      }
+
       const genResult = await generateExpertConclusion(
           files,
-          template.templateText,
+          finalTemplateText,
           selectedExpert,
           conclusionNumber,
           startDate,
@@ -148,51 +207,51 @@ const ReportGenerator: React.FC = () => {
             return;
         }
 
-        printWindow.document.write('<html><head><title>Друк Висновку</title>');
+        const styleSheets = Array.from(document.styleSheets);
+        let proseStyles = '';
+        try {
+            styleSheets.forEach(sheet => {
+                try {
+                    Array.from(sheet.cssRules || []).forEach(rule => {
+                        if (rule.cssText.includes('.prose-document')) {
+                            proseStyles += rule.cssText + '\n';
+                        }
+                    });
+                } catch (e) { }
+            });
+        } catch (e) {}
+
+        printWindow.document.write('<!DOCTYPE html><html><head><title>Друк Висновку</title>');
         printWindow.document.write(`
             <style>
-                body { 
-                    font-family: 'Times New Roman', serif; 
-                    font-size: 12pt; 
-                    line-height: 1.5; 
-                    color: #000;
-                    background: #fff;
+                body { margin: 0; padding: 0; background: #fff; }
+                @page { size: A4; margin: 2cm; }
+                ${proseStyles}
+                .prose-document {
+                    width: 100% !important;
+                    max-width: none !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    box-shadow: none !important;
+                    background: transparent !important;
                 }
-                @page { 
-                    size: A4; 
-                    margin: 2cm; 
-                }
-                /* Re-apply basic prose styles for the print window specifically */
-                .prose-document p { margin-bottom: 1em; }
-                .prose-document strong, .prose-document b { font-weight: bold; }
-                .prose-document em, .prose-document i { font-style: italic; }
-                .prose-document ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
-                .prose-document ol { list-style-type: decimal; padding-left: 1.5em; margin-bottom: 1em; }
-                .prose-document li { margin-bottom: 0.5em; }
-                .prose-document table { width: 100%; border-collapse: collapse; margin-bottom: 1em; }
-                .prose-document th, .prose-document td { border: 1px solid black; padding: 5px; text-align: left; }
-                .prose-document h1 { font-size: 1.5em; font-weight: bold; margin-bottom: 0.5em; }
-                .prose-document h2 { font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; }
             </style>
         `);
         printWindow.document.write('</head><body>');
-        // Wrap in the same class to apply the styles above
         printWindow.document.write(`<div class="prose-document">${printContent.innerHTML}</div>`);
         printWindow.document.write('</body></html>');
         printWindow.document.close();
         
-        // Wait a moment for styles to apply then print
         setTimeout(() => {
             printWindow.focus();
             printWindow.print();
-        }, 500);
+        }, 1000);
     }, []);
 
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
       
-      {/* Left Sidebar / Input Area */}
       <div className="lg:col-span-2 space-y-6">
         <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
             <h2 className="text-lg font-semibold mb-4 text-slate-800 flex items-center gap-2">
@@ -212,12 +271,37 @@ const ReportGenerator: React.FC = () => {
                             <option key={t.id} value={t.id}>{t.name}</option>
                         ))}
                     </select>
-                    {templates.length === 0 && (
-                        <p className="text-sm text-amber-600 mt-2">
-                            Немає доступних шаблонів. Додайте їх у вкладці "Шаблони".
-                        </p>
+                </div>
+
+                <div>
+                    <div className="flex items-center">
+                        <input
+                            id="useStandardHeader"
+                            type="checkbox"
+                            checked={useStandardHeader}
+                            onChange={(e) => setUseStandardHeader(e.target.checked)}
+                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-slate-300 rounded"
+                        />
+                        <label htmlFor="useStandardHeader" className="ml-2 block text-sm text-slate-900 font-medium">
+                            Додати стандартну шапку ТПП
+                        </label>
+                    </div>
+                    {useStandardHeader && (
+                        <div className="flex items-center ml-6 mt-2 animate-fade-in">
+                            <input
+                                id="includeLogo"
+                                type="checkbox"
+                                checked={includeLogo}
+                                onChange={(e) => setIncludeLogo(e.target.checked)}
+                                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-slate-300 rounded"
+                            />
+                            <label htmlFor="includeLogo" className="ml-2 block text-sm text-slate-700">
+                                Додати логотип
+                            </label>
+                        </div>
                     )}
                 </div>
+
                 <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Експерт *</label>
                     <select
@@ -339,7 +423,6 @@ const ReportGenerator: React.FC = () => {
             </div>
         )}
 
-        {/* Extracted Data Summary (Visible if available) */}
         {result?.extractedData && Object.keys(result.extractedData).length > 0 && (
              <div className="bg-green-50 p-4 rounded-xl border border-green-100 animate-fade-in">
                 <h3 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
@@ -373,7 +456,6 @@ const ReportGenerator: React.FC = () => {
         )}
       </div>
 
-      {/* Right Side / Output Area - A4 Styled with HTML rendering */}
       <div className="lg:col-span-3 bg-slate-600 rounded-xl shadow-inner border border-slate-700 flex flex-col h-[80vh] lg:h-auto min-h-[600px]">
         <div className="p-3 border-b border-slate-700 flex justify-between items-center bg-slate-800 rounded-t-xl text-slate-200">
             <h3 className="font-semibold flex items-center gap-2">
@@ -403,10 +485,7 @@ const ReportGenerator: React.FC = () => {
         </div>
         <div className="flex-grow p-4 md:p-8 overflow-auto flex justify-center bg-slate-600/50 backdrop-blur-sm">
             {result ? (
-                /* A4 Paper Simulation with HTML rendering.
-                   Using 'prose-document' class for custom styles from index.html to restore lists, tables, bold etc. 
-                */
-                <div className="bg-white shadow-2xl w-full max-w-[21cm] min-h-[29.7cm] p-[2.5cm] text-black font-serif text-[12pt] leading-normal transition-all">
+                <div className="bg-white shadow-2xl w-full max-w-[21cm] min-h-[29.7cm] p-[2.5cm] text-black transition-all origin-top">
                     <div 
                         id="generated-result-content"
                         className="prose-document" 

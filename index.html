@@ -28,47 +28,63 @@
       }
     </script>
     <style>
-      /* Restore default styling for generated HTML documents inside the preview area */
+      /* 
+        Strict Document Styling for A4 emulation.
+        Designed to override Tailwind's reset and provide a "Word-like" default appearance.
+      */
+      .prose-document {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12pt;
+        line-height: 1.15; /* Standard Word line spacing */
+        color: #000;
+      }
       .prose-document p {
         margin-bottom: 1em;
-        line-height: 1.5;
       }
-      .prose-document strong, .prose-document b {
+      .prose-document h1, .prose-document h2, .prose-document h3, .prose-document h4, .prose-document h5, .prose-document h6 {
         font-weight: bold;
-      }
-      .prose-document em, .prose-document i {
-        font-style: italic;
-      }
-      .prose-document ul {
-        list-style-type: disc;
-        padding-left: 1.5em;
-        margin-bottom: 1em;
-      }
-      .prose-document ol {
-        list-style-type: decimal;
-        padding-left: 1.5em;
-        margin-bottom: 1em;
-      }
-      .prose-document li {
+        margin-top: 1em;
         margin-bottom: 0.5em;
       }
+      .prose-document h1 { font-size: 18pt; }
+      .prose-document h2 { font-size: 16pt; }
+      .prose-document h3 { font-size: 14pt; }
+
+      .prose-document strong, .prose-document b { font-weight: bold; }
+      .prose-document em, .prose-document i { font-style: italic; }
+      .prose-document u { text-decoration: underline; }
+
+      .prose-document ul, .prose-document ol {
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        padding-left: 2.5em; /* Standard indented list */
+      }
+      .prose-document ul { list-style-type: disc; }
+      .prose-document ol { list-style-type: decimal; }
+      .prose-document li { margin-bottom: 0.25em; }
+
       .prose-document table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 1em;
+        font-size: 11pt; /* Tables often slightly smaller */
       }
       .prose-document th, .prose-document td {
-        border: 1px solid #cbd5e1; /* slate-300 */
-        padding: 0.5em;
+        border: 1px solid black !important; /* Force black borders for standard look */
+        padding: 4px 8px;
+        vertical-align: top;
         text-align: left;
       }
       .prose-document th {
-        background-color: #f1f5f9; /* slate-100 */
+        background-color: #f3f4f6; /* Light gray for headers sometimes used */
         font-weight: bold;
+        text-align: center;
       }
-      .prose-document h1 { font-size: 2em; font-weight: bold; margin-bottom: 0.5em; }
-      .prose-document h2 { font-size: 1.5em; font-weight: bold; margin-bottom: 0.5em; }
-      .prose-document h3 { font-size: 1.25em; font-weight: bold; margin-bottom: 0.5em; }
+      
+      /* Utility classes often found in pasted HTML */
+      .prose-document .text-center { text-align: center; }
+      .prose-document .text-right { text-align: right; }
+      .prose-document .font-bold { font-weight: bold; }
     </style>
   <script type="importmap">
 {
