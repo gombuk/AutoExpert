@@ -1,0 +1,5 @@
+{
+  "name": "Expert Conclusion Filler (AutoExpert)",
+  "description": "An AI-powered tool to automatically fill expert conclusion reports based on uploaded customs documents and firm-specific templates.",
+  "requestFramePermissions": []
+}
