@@ -432,6 +432,12 @@ const ReportGenerator: React.FC = () => {
                     <dt className="text-green-700 font-medium">ВМД:</dt>
                     <dd className="text-slate-700 truncate" title={result.extractedData.vmd}>{result.extractedData.vmd || '-'}</dd>
                     
+                    <dt className="text-green-700 font-medium">Проформа №:</dt>
+                    <dd className="text-slate-700 truncate">{result.extractedData.proformaNumber || '-'}</dd>
+                    
+                    <dt className="text-green-700 font-medium">Дата проф.:</dt>
+                    <dd className="text-slate-700 truncate">{result.extractedData.proformaDate || '-'}</dd>
+
                     <dt className="text-green-700 font-medium">Додаток №:</dt>
                     <dd className="text-slate-700 truncate">{result.extractedData.appendixNumber || '-'}</dd>
                     

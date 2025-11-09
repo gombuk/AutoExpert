@@ -18,6 +18,8 @@ export interface GenerationResult {
   fullText: string;
   extractedData?: {
     vmd?: string;
+    proformaNumber?: string;
+    proformaDate?: string;
     goods?: string[];
     uktzied?: string[];
     quantity?: string;
