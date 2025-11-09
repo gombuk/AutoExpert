@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import { FirmTemplate, UploadedFile, GenerationResult } from '../types';
 import { getTemplates } from '../services/storageService';
@@ -250,9 +249,9 @@ const ReportGenerator: React.FC = () => {
 
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-5 gap-8">
+    <div className="mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
       
-      <div className="lg:col-span-2 space-y-6">
+      <div className="lg:col-span-4 space-y-6">
         <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
             <h2 className="text-lg font-semibold mb-4 text-slate-800 flex items-center gap-2">
                 <span className="bg-primary-100 text-primary-700 w-6 h-6 rounded-full flex items-center justify-center text-sm">1</span>
@@ -456,7 +455,7 @@ const ReportGenerator: React.FC = () => {
         )}
       </div>
 
-      <div className="lg:col-span-3 bg-slate-600 rounded-xl shadow-inner border border-slate-700 flex flex-col h-[80vh] lg:h-auto min-h-[600px]">
+      <div className="lg:col-span-8 bg-slate-600 rounded-xl shadow-inner border border-slate-700 flex flex-col h-[80vh] lg:h-auto min-h-[600px]">
         <div className="p-3 border-b border-slate-700 flex justify-between items-center bg-slate-800 rounded-t-xl text-slate-200">
             <h3 className="font-semibold flex items-center gap-2">
                 <DocumentTextIcon className="w-5 h-5 text-primary-400" />
@@ -466,7 +465,7 @@ const ReportGenerator: React.FC = () => {
                 <div className="flex gap-2">
                     <button
                         onClick={handlePrint}
-                        className="flex items-center gap-1 text-xs px-3 py-1.5 bg-primary-600 border border-primary-500 rounded hover:bg-primary-700 text-white transition-colors"
+                        className="flex items-center gap-1 text-xs px-3 py-1.5 bg-slate-700 border border-slate-600 rounded hover:bg-slate-600 text-slate-200 transition-colors"
                         title="Роздрукувати висновок"
                     >
                         <PrinterIcon className="w-4 h-4" />
@@ -485,7 +484,7 @@ const ReportGenerator: React.FC = () => {
         </div>
         <div className="flex-grow p-4 md:p-8 overflow-auto flex justify-center bg-slate-600/50 backdrop-blur-sm">
             {result ? (
-                <div className="bg-white shadow-2xl w-full max-w-[21cm] min-h-[29.7cm] p-[2.5cm] text-black transition-all origin-top">
+                <div className="bg-white shadow-2xl w-[21cm] min-h-[29.7cm] p-[2cm] text-black transition-all origin-top flex-shrink-0">
                     <div 
                         id="generated-result-content"
                         className="prose-document" 

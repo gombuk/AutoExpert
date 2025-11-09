@@ -12,7 +12,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary-600 rounded-md flex items-center justify-center shadow-sm rotate-3 hover:rotate-0 transition-transform">
                <DocumentTextIcon className="text-white w-5 h-5" />
@@ -51,14 +51,14 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main className="flex-grow py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
           {activeTab === 'generator' ? <ReportGenerator /> : <TemplateManager />}
         </div>
       </main>
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 py-4">
-        <div className="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
+        <div className="max-w-screen-2xl mx-auto px-4 text-center text-slate-500 text-sm">
           © {new Date().getFullYear()} AutoExpert. Powered by Google Gemini.
         </div>
       </footer>

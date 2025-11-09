@@ -187,7 +187,7 @@ const TemplateManager: React.FC = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
           <TemplateIcon className="w-8 h-8 text-primary-600" />
@@ -294,7 +294,7 @@ const TemplateManager: React.FC = () => {
               ) : (
                   <div className="border border-slate-300 rounded-md bg-slate-200/50 p-4 h-[500px] overflow-auto flex justify-center">
                       {currentTemplate.templateText ? (
-                          <div className="bg-white shadow-lg w-full max-w-[21cm] min-h-[29.7cm] p-[2cm] origin-top transition-all scale-90 md:scale-100">
+                          <div className="bg-white shadow-lg w-[21cm] min-h-[29.7cm] p-[2cm] origin-top transition-all flex-shrink-0">
                               {/* Apply the same 'prose-document' class for consistent preview */}
                               <div 
                                   className="prose-document"
